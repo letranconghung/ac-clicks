@@ -8,7 +8,7 @@ Back-end: Firebase
 #### Functionalities:
 Multi-client, real time updates to leaderboard
 
-Spectating mode (leaderboard only display)
+Spectator mode (leaderboard only display)
 
 
 ```finished in 4 hours lol```
