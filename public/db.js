@@ -1,11 +1,18 @@
+// threshold & bot behavior prevention
 var db = firebase.database();
+var start = Date.now();
+var allowance = 100;
+var valid = true;
+var prevClickInterval = 0;
+var nConsec = 0;
+var intervalDiff, prevIntervalDiff;
 var houseColor = {
   cks: "#16B0EE",
   ghk: "#DEB63A",
   lsg: "#C6C1B6",
   oldham: "#CC0033",
   svm: "#9933CC",
-  tct: "#EED0AE",
+  tct: "#FF9900",
   thoburn: "#336633",
   tkk: "#444444"
 }
@@ -20,10 +27,29 @@ var houseShort = {
   tkk: "TKK"
 }
 $(".housebtn").click(e => {
-  var house = e.target.id;
-  console.log(house);
-  firebase.database().ref().child(house).set(firebase.database.ServerValue.increment(1));
+  var clickInterval = Date.now() - start;
+  start = Date.now();
+  intervalDiff = Math.abs(clickInterval - prevClickInterval);
+  var diffIntervalDiff = Math.abs(intervalDiff - prevIntervalDiff);
+  prevIntervalDiff = intervalDiff;
+  // console.log(`diffIntervalDiff: ${diffIntervalDiff}`);
+  if(diffIntervalDiff <= 5){
+    ++nConsec;
+  }else{
+    nConsec = 0;
+  }
+  if(nConsec == 4){
+    valid = false;
+  }
+  if(valid){
+    if(clickInterval > allowance){
+      // console.log(`valid clickInterval: ${clickInterval}`);
+      var house = e.target.id;
+      firebase.database().ref().child(house).set(firebase.database.ServerValue.increment(1));
+    }
+  }
 });
+
 db.ref().on('value', snapshot => {
   var values = snapshot.val();
   var arr = [];
