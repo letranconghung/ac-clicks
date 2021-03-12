@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+::-webkit-scrollbar { 
+  display: none;
+}
+*{
+  scroll-behavior: smooth;
+  color: black;
+  /* font-family: Helvetica, sans-serif; */
+  font-weight: bold;
+  font-size: large;
+}
+body, html{
+  height: 100%;
+}
+.welcome{
+  color: white;
+}
+.housebtn{
+  width: 100%;
+  max-width: 100%;
+  border: 5px solid transparent;
+}
+.housebtn:hover{
+  cursor: pointer;
+  border: 0px;
+  transition: border 2s;
+}
+body{
+  overflow-x: hidden;
+  background-image: url("imgs/acscrest-dark-min.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
