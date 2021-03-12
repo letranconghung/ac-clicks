@@ -1,7 +1,7 @@
 // threshold & bot behavior prevention
 var db = firebase.database();
 var start = Date.now();
-var allowance = 100;
+var allowance = 60;
 var valid = true;
 var prevClickInterval = 0;
 var nConsec = 0;
